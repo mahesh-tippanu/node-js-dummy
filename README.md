@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <div align="center" id="top"> 
   <img src="./.github/app.gif" alt="To Do Web App served with Node.js and Express.js" />
 
@@ -228,3 +229,7 @@ Made with :heart: by <a href="https://github.com/devenes" target="_blank">devene
 &#xa0;
 
 <a href="#top">⬆️ Back to top</a>
+=======
+# node-js-dummy
+AI Agent backend project
+>>>>>>> 648e19a4c9b80bffd509fbbe053a15aab1c12773

@@ -19,3 +19,20 @@ describe("GET /", function () {
             });
     });
 });
+
+app.post("/delete", function (req, res) {
+    const item = req.body.item;
+
+    // Delete from pending tasks
+    if (task.includes(item)) {
+        task.splice(task.indexOf(item), 1);
+    }
+
+    // Delete from completed tasks
+    if (complete.includes(item)) {
+        complete.splice(complete.indexOf(item), 1);
+    }
+
+    res.redirect("/");
+});
+    console.log("Server started on port " + port);

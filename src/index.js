@@ -4,34 +4,27 @@ var bodyParser = require("body-parser");
 var app = express();
 const port = process.env.PORT || 3000;
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-//render css files
 app.use(express.static("public"));
 
-
-//placeholders for added task
+//placeholders for tasks
 var task = ["buy a new udemy course", "practise with kubernetes"];
-//placeholders for removed task
 var complete = ["finish reading the book"];
 
-
-//post route for adding new task 
+//add task
 app.post("/addtask", function (req, res) {
     var newTask = req.body.newtask;
-    //add the new task from the post route
     task.push(newTask);
     res.redirect("/");
 });
 
-
+//mark task complete
 app.post("/removetask", function (req, res) {
     var completeTask = req.body.check;
-    //check for the "typeof" the different completed task, then add into the complete task
+
     if (typeof completeTask === "string") {
         complete.push(completeTask);
-        //check if the completed task already exits in the task when checked, then remove it
         task.splice(task.indexOf(completeTask), 1);
     } else if (typeof completeTask === "object") {
         for (var i = 0; i < completeTask.length; i++) {
@@ -42,14 +35,29 @@ app.post("/removetask", function (req, res) {
     res.redirect("/");
 });
 
+//DELETE TASK FEATURE (NEW)
+app.post("/delete", function (req, res) {
+    const item = req.body.item;
 
-//render the ejs and display added task, completed task
+    // Delete from pending
+    if (task.includes(item)) {
+        task.splice(task.indexOf(item), 1);
+    }
+
+    // Delete from completed
+    if (complete.includes(item)) {
+        complete.splice(complete.indexOf(item), 1);
+    }
+
+    res.redirect("/");
+});
+
+//render tasks
 app.get("/", function (req, res) {
     res.render("index", { task: task, complete: complete });
 });
 
-
-//set app to listen on port 3000
-app.listen(3000, function () {
-    console.log("server is running on port http://localhost:" + port);
+//server
+app.listen(port, function () {
+    console.log("server is running on http://localhost:" + port);
 });

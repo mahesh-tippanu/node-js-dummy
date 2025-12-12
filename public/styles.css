@@ -31,3 +31,24 @@ ul {
     line-height: 10px;
     cursor: pointer;
 }
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+}
+.input-field {
+    width: 70%;
+    height: 25px;
+    font-size: 16px;
+    padding: 4px;
+    margin-right: 10px;
+}
